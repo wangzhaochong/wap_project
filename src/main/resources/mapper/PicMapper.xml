@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kacha.wapproj.mapper.PicMapper">
+
+    <!-- 配置映射字段 -->
+    <resultMap type="com.kacha.wapproj.entity.Pic" id="pic_result">
+        <id property="pic_id" column="picId"/>
+        <result property="commodity_id" column="commodityId"/>
+        <result property="src" column="src"/>
+        <result property="pic_index" column="picIndex"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <select id="selectPicListByCommodityId" resultMap="pic_result">
+        SELECT
+            *
+        FROM
+            pic
+        WHERE
+            commodity_id IN
+            <foreach item="item" collection="list" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        AND status = 1
+        AND pic_index = 0
+    </select>
+
+</mapper>

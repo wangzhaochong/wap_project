@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kacha.wapproj.mapper.CommodityMapper">
+
+    <!-- 配置映射字段 -->
+    <resultMap type="com.kacha.wapproj.entity.Commodity" id="commodity_result">
+        <id property="commodity_id" column="commodityId"/>
+        <result property="commodity_name" column="commodityName"/>
+        <result property="commodity_index" column="commodityIndex"/>
+        <result property="price_cur" column="priceCur"/>
+        <result property="price_line" column="priceLine"/>
+        <result property="least_buyer_count" column="leastBuyerCount"/>
+        <result property="buyer_count" column="buyerCount"/>
+        <result property="end_time" column="endTime"/>
+        <result property="shop_name" column="shopName"/>
+        <result property="location" column="location"/>
+        <result property="type_name" column="typeName"/>
+        <result property="type_index" column="typeIndex"/>
+    </resultMap>
+
+    <select id="selectCommodityList" resultMap="commodity_result">
+        SELECT
+            com.commodity_id,
+            com.commodity_name,
+            com.commodity_index,
+            com.price_cur,
+            com.price_line,
+            com.least_buyer_count,
+            com.buyer_count,
+            com.end_time,
+            shop.shop_name,
+            shop.location,
+            type.type_name,
+            type.type_index
+        FROM
+            commodity com
+        INNER JOIN shop shop ON com.shop_id = shop.shop_id
+        INNER JOIN type type ON com.type_id = type.type_id
+        WHERE
+            com.`status` = 1
+    </select>
+
+</mapper>
