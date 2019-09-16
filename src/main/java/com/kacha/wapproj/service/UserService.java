@@ -37,5 +37,12 @@ public class UserService {
         }
     }
 
+    public User selectUserByTel(String tel){
+
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("phone_number", tel);
+        return userMapper.selectOne(queryWrapper);
+    }
+
 
 }

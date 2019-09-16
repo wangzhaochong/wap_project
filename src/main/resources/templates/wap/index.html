@@ -24,7 +24,7 @@
 
 <div id="login_box" class="login_box" th:switch = "${user}!= null">
     <div id="order_num" class="order_num">您有0个团购订单</div>
-    <div th:case="true" class="login_link" th:text = "'您好！ '+${user.familyName}${gender}"></div>
+    <div th:case="true" class="login_link" th:text = "'您好！ '+${user.familyName}+${gender}"></div>
     <div th:case="false" id="login_link"  class="login_link">登录</div>
 </div>
 
@@ -81,6 +81,18 @@
                 <div class="input_name_word">名</div>
             </div>
             <input id="given_name_input" class="input_line"/>
+        </div>
+        <div  class="input_line_box">
+            <div  class="input_name_line">
+                <div class="input_name_word">性别</div>
+                <div class="input_star_mark">*</div>
+            </div>
+            <div class="input_line">
+                <input type="radio" value="1" class="radio_text_line" id="gender_male_radio"/>
+                <div class="radio_dot_line">先生</div>
+                <input type="radio" checked="checked" value="0" class="radio_text_line" id="gender_female_radio"/>
+                <div class="radio_dot_line">女士</div>
+            </div>
         </div>
     </div>
     <div class="login_button_box" id="login_button_box">免注册登录</div>

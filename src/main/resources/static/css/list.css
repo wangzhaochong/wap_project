@@ -247,18 +247,18 @@
 }
 
 .login_input_box {
-    width:300px;
-    height:300px;
-    position:fixed;
+    width: 300px;
+    height: 330px;
+    position: fixed;
     border-color: #000000;
     border-width: 1px;
-    left:46%;
-    top:50%;
-    margin-left:-150px;
-    margin-top:-150px;
+    left: 46%;
+    top: 48%;
+    margin-left: -150px;
+    margin-top: -165px;
     z-index: 99;
     background-color: #ffffff;
-    display:none;
+    display: none;
 }
 
 
@@ -282,7 +282,7 @@
     background-color: #ffffff;
     min-height: 28px;
     line-height: 28px;
-    margin: 19px 0 0 0;
+    margin: 12px 0 0 0;
     text-align: right;
 }
 
@@ -343,6 +343,28 @@
     border-width: 0.5px;
 }
 
+.radio_text_line {
+    display: inline;
+    float: left;
+    background-color: #ffffff;
+    min-height: 28px;
+    line-height: 28px;
+    color: #000000;
+    font-size: 20px;
+    margin: 0px 0 0 10%;
+}
+
+.radio_dot_line {
+    display: inline;
+    float: left;
+    background-color: #ffffff;
+    min-height: 28px;
+    line-height: 28px;
+    color: #000000;
+    font-size: 20px;
+    margin: 0 0 0 5%;
+}
+
 .login_button_box {
     line-height: 34px;
     text-align: center;
@@ -352,7 +374,7 @@
     display: inline;
     font-weight: bolder;
     width: 56%;
-    margin: 22px 16% 2px 24%;
+    margin: 23px 16% 2px 24%;
     border-radius: 7px;
     float: left;
 }

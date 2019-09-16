@@ -52,14 +52,17 @@ public class UserController {
 
 
 
-    @PostMapping(value = "/login")
+    @PostMapping(value = "/user/login")
     @ResponseBody
     public Object login(HttpServletResponse response, @RequestBody User user) {
 
         userService.addUser(user);
 
+        user = userService.selectUserByTel(user.getPhoneNumber());
         Cookie cookie = new Cookie("uid", String.valueOf(user.getUserId()));
         cookie.setMaxAge(-1);
+        cookie.setDomain("localhost");
+        cookie.setPath("/");
         response.addCookie(cookie);
 
         return Resp.ok();
