@@ -16,4 +16,6 @@ public interface PicMapper extends BaseMapper<Pic> {
 
     List<Pic> selectPicListByCommodityId(@Param("list") List<Long> commodityIdList);
 
+    List<Pic> selectAllPicListByCommodityId(@Param("list") List<Long> commodityIdList);
+
 }

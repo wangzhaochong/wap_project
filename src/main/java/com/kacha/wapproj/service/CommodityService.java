@@ -19,16 +19,14 @@ public class CommodityService {
     CommodityMapper commodityMapper;
 
 
-    public List<Commodity> selectCommodityList(){
-
-        QueryWrapper<Commodity> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("status", 1);
-        return commodityMapper.selectList(queryWrapper);
-    }
-
     public List<Commodity> selectCommodityExtendList(){
 
         return commodityMapper.selectCommodityList();
+    }
+
+    public Commodity selectCommodityExtend(Commodity query){
+
+        return commodityMapper.selectCommodityExtend(query);
     }
 
 

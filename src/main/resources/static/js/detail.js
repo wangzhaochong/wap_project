@@ -1,0 +1,73 @@
+
+
+
+//在黑幕层阻挡touch事件
+function init() {
+    $("#login_input_bg").on("touchmove",function(e) {
+        e.preventDefault();
+    });
+
+    $("#input_cross_mark").click(function() {
+        $("#login_input_bg").css("display","none");
+        $("#login_input_box").css("display","none");
+    });
+
+    $("#login_link").click(function() {
+        $("#login_input_bg").css("display","block");
+        $("#login_input_box").css("display","block");
+    });
+
+    $("#login_button_box").click(function(){
+
+        var gender = 0;
+        if($("#gender_male_radio").attr("checked") == "checked"){
+            gender = 1;
+        }else if($("#gender_female_radio").attr("checked") == "checked"){
+            gender = 0;
+        }
+
+        var postdata={
+            "phoneNumber":$("#phone_input_line").val(),
+            "familyName":$("#family_name_input").val(),
+            "givenName":$("#given_name_input").val(),
+            "gender":gender
+        };
+
+        if($("#phone_input_line").val() == null || $("#phone_input_line").val() == ''
+            || $("#family_name_input").val() == null || $("#family_name_input").val() == ''
+            || gender == null || gender == ''){
+            alert("电话、姓氏、性别尚未填写");
+            return;
+        }
+
+        $.ajax({
+            url:'/user/login',
+            type:'POST',
+            async:true,
+            data:JSON.stringify(postdata),
+            timeout:6000,
+            dataType:'json',
+            contentType:"application/json",
+            success:function(res){
+                if(res.code === 200){
+                    $("#login_input_bg").css("display","none");
+                    $("#login_input_box").css("display","none");
+                    refresh();
+                }else{
+                    alert(res.message);
+                }
+            },
+            error:function(data){
+                alert(data.statusText);
+            }
+        });
+    });
+}
+
+function refresh(){
+    window.location.reload();//刷新当前页面.
+}
+
+
+
+

@@ -25,4 +25,17 @@
         AND pic_index = 0
     </select>
 
+    <select id="selectAllPicListByCommodityId" resultMap="pic_result">
+        SELECT
+        *
+        FROM
+        pic
+        WHERE
+        commodity_id IN
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        AND status = 1
+    </select>
+
 </mapper>

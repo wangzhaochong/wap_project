@@ -40,4 +40,32 @@
             com.`status` = 1
     </select>
 
+    <select id="selectCommodityExtend" parameterType="com.kacha.wapproj.entity.Commodity" resultMap="commodity_result">
+        SELECT
+        com.commodity_id,
+        com.commodity_name,
+        com.commodity_index,
+        com.price_cur,
+        com.price_line,
+        com.least_buyer_count,
+        com.buyer_count,
+        com.end_time,
+        shop.shop_name,
+        shop.location,
+        type.type_name,
+        type.type_index
+        FROM
+        commodity com
+        INNER JOIN shop shop ON com.shop_id = shop.shop_id
+        INNER JOIN type type ON com.type_id = type.type_id
+        <where>
+            <if test="commodityId != null" >
+                com.commodity_id = #{commodityId}
+            </if>
+            <if test="status != null" >
+                AND com.status = #{status}
+            </if>
+        </where>
+    </select>
+
 </mapper>

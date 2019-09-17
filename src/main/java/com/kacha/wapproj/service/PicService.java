@@ -17,9 +17,19 @@ public class PicService {
     PicMapper picMapper;
 
 
-    public List<Pic> selectPicListByCommodityId(List<Long> commodityList){
+    /**
+     * 获取商品对应的图片
+     * @param commodityList
+     * @param prime 是否获取首图/所有图片
+     * @return
+     */
+    public List<Pic> selectPicListByCommodityId(List<Long> commodityList, boolean prime){
 
-        return picMapper.selectPicListByCommodityId(commodityList);
+        if(prime){
+            return picMapper.selectPicListByCommodityId(commodityList);
+        }else {
+            return picMapper.selectAllPicListByCommodityId(commodityList);
+        }
     }
 
 

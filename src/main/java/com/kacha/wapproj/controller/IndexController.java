@@ -91,7 +91,7 @@ public class IndexController {
             }
 
             //取图片
-            List<Pic> picList = picService.selectPicListByCommodityId(idList);
+            List<Pic> picList = picService.selectPicListByCommodityId(idList, true);
             Map<Long, String> srcMap = Maps.newHashMap();
             for(Pic pic : picList){
                 srcMap.put(pic.getCommodityId(),pic.getSrc());
@@ -155,7 +155,7 @@ public class IndexController {
     public Object getList(HttpServletRequest req) {
 
         List<Long> idList = Arrays.asList(new Long[]{1l,2l,4l});
-        return picService.selectPicListByCommodityId(idList);
+        return picService.selectPicListByCommodityId(idList, true);
     }
 
 

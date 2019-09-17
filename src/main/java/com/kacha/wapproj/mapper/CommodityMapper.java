@@ -15,4 +15,6 @@ public interface CommodityMapper extends BaseMapper<Commodity> {
 
     List<Commodity> selectCommodityList();
 
+    Commodity selectCommodityExtend(Commodity query);
+
 }

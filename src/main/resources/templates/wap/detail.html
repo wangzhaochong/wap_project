@@ -10,53 +10,56 @@
     <meta http-equiv="cache-control" content="no-cache"/>
     <meta http-equiv="expires" content="0"/>
     <script th:src="@{/js/jquery-1.8.3.min.js}"></script>
-    <script th:src="@{/js/list.js}"></script>
-    <link rel="stylesheet" th:href="@{/css/list.css}" />
+    <script th:src="@{/js/detail.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/detail.css}" />
     <link rel="stylesheet" th:href="@{/css/common.css}" />
 
 </head>
 
 <body class="body">
 
-<div id="prime_img" class="prime_img_box">
-    <img class="prime_img" src="images/prime_compress.jpg"/>
-</div>
 
 <div id="login_box" class="login_box" th:switch = "${user}!= null">
-    <div id="order_num" class="order_num">您有0个团购订单</div>
     <div th:case="true" class="login_link" th:text = "'您好！ '+${user.familyName}+${gender}"></div>
     <div th:case="false" id="login_link"  class="login_link">登录</div>
 </div>
 
-<div id="content_box" class="content_box" th:each="typeItem:${typeList}" >
-    <div id="type_block" class="type_block" th:text="${typeItem.typeName}"></div>
-    <div id="item_box" class="item_box" th:each="item:${typeItem.itemList}" >
-        <div class="item_title" th:if="${item.commodityName}!=null" th:text="${item.commodityName}"></div>
-        <img class="item_img" th:src="${item.srcList[0]}"/>
-        <div id="price_box" class="price_box" >
-            <div id="price_mark" class="price_mark" >￥</div>
-            <div id="price_cur" class="price_cur" th:text="${item.priceCur}"></div>
-            <div id="price_old" class="price_old" th:text="${item.priceLine}"></div>
+
+<div id="content_box" class="content_box" >
+    <div id="item_box" class="item_box" >
+        <div class="item_title" th:if="${commodity.commodityName}!=null" th:text="${commodity.commodityName}"></div>
+        <div th:each="item_img:${srcList}" >
+            <img class="item_img" th:src="${item_img}"/>
         </div>
-        <div id="button_box" class="button_box" >
-            <div id="r_button_box" class="r_button_box" >
-                <div id="r_button" class="r_button" >详情</div>
-            </div>
-            <div id="l_button_box" class="l_button_box" >
-                <div id="l_button" class="l_button" >拼团</div>
-            </div>
-        </div>
-        <div id="condition_box" class="condition_box">
-            <div id="condition_num" class="condition_num" th:text="${item.leastBuyerCount}+'人发团 已团'+ ${item.buyerCount}+'人'"></div>
-        </div>
+
         <div id="shop_detail_box" class="shop_detail_box">
             <div class="shop_detail" th:text="'商家：'+ ${item.shopName}"></div>
             <div class="shop_detail" th:text="'位置：'+ ${item.location}"></div>
             <div class="shop_detail" th:text="'截止时间：'+ ${item.deadline}"></div>
         </div>
+
+        <div id="condition_box" class="condition_box">
+            <div id="condition_num" class="condition_num" th:text="${item.leastBuyerCount}+'人发团 已团'+ ${item.buyerCount}+'人'"></div>
+        </div>
+
+
     </div>
 </div>
-<div id="buttom_box" class="buttom_box">客服：15256669888</div>
+<div class="buttom_box_detail">
+    <div id="price_box" class="price_box" >
+        <div id="price_mark" class="price_mark" >￥</div>
+        <div id="price_cur" class="price_cur" th:text="${item.priceCur}"></div>
+        <div id="price_old" class="price_old" th:text="${item.priceLine}"></div>
+    </div>
+    <div id="button_box" class="button_box" >
+        <div id="r_button_box" class="r_button_box" >
+            <div id="r_button" class="r_button" >详情</div>
+        </div>
+        <div id="l_button_box" class="l_button_box" >
+            <div id="l_button" class="l_button" >拼团</div>
+        </div>
+    </div>
+</div>
 
 <div id="login_input_bg" class="login_input_bg"></div>
 <div id="login_input_box" class="login_input_box">
