@@ -28,18 +28,18 @@
 <div id="content_box" class="content_box" >
     <div id="item_box" class="item_box" >
         <div class="item_title" th:if="${commodity.commodityName}!=null" th:text="${commodity.commodityName}"></div>
-        <div th:each="item_img:${srcList}" >
+        <div th:each="item_img:${commodity.srcList}" >
             <img class="item_img" th:src="${item_img}"/>
         </div>
 
         <div id="shop_detail_box" class="shop_detail_box">
-            <div class="shop_detail" th:text="'商家：'+ ${item.shopName}"></div>
-            <div class="shop_detail" th:text="'位置：'+ ${item.location}"></div>
-            <div class="shop_detail" th:text="'截止时间：'+ ${item.deadline}"></div>
+            <div class="shop_detail" th:text="'商家：'+ ${commodity.shopName}"></div>
+            <div class="shop_detail" th:text="'位置：'+ ${commodity.location}"></div>
+            <div class="shop_detail" th:text="'截止时间：'+ ${commodity.deadline}"></div>
         </div>
 
         <div id="condition_box" class="condition_box">
-            <div id="condition_num" class="condition_num" th:text="${item.leastBuyerCount}+'人发团 已团'+ ${item.buyerCount}+'人'"></div>
+            <div id="condition_num" class="condition_num" th:text="${commodity.leastBuyerCount}+'人发团 已团'+ ${commodity.buyerCount}+'人'"></div>
         </div>
 
 
@@ -48,8 +48,8 @@
 <div class="buttom_box_detail">
     <div id="price_box" class="price_box" >
         <div id="price_mark" class="price_mark" >￥</div>
-        <div id="price_cur" class="price_cur" th:text="${item.priceCur}"></div>
-        <div id="price_old" class="price_old" th:text="${item.priceLine}"></div>
+        <div id="price_cur" class="price_cur" th:text="${commodity.priceCur}"></div>
+        <div id="price_old" class="price_old" th:text="${commodity.priceLine}"></div>
     </div>
     <div id="button_box" class="button_box" >
         <div id="r_button_box" class="r_button_box" >
