@@ -99,6 +99,49 @@
     <div class="login_button_comment" >登录后将显示您的团购订单</div>
 </div>
 
+<div class="sign_input_box" id="sign_input_box">
+    <div class="sign_cross_mark" id="sign_cross_mark" >×</div>
+    <div id="sign_box" class="sign_box">
+        <div  class="input_line_box">
+            <div class="input_name_line">
+                <div  class="input_name_word">电话</div>
+                <div class="input_star_mark">*</div>
+            </div>
+            <input id="phone_sign_line" class="input_line"/>
+        </div>
+        <div  class="input_line_box">
+            <div  class="input_name_line">
+                <div class="input_name_word">姓</div>
+                <div class="input_star_mark">*</div>
+            </div>
+            <input id="family_name_sign" class="input_line"/>
+        </div>
+        <div  class="input_line_box">
+            <div  class="input_name_line">
+                <div class="input_name_word">名</div>
+            </div>
+            <input id="given_name_sign" class="input_line"/>
+        </div>
+        <div  class="input_line_box">
+            <div  class="input_name_line">
+                <div class="input_name_word">性别</div>
+                <div class="input_star_mark">*</div>
+            </div>
+            <div class="input_line">
+                <input type="radio" value="1" class="radio_text_line" id="sign_male_radio" name="gender_radio"/>
+                <div class="radio_dot_line">先生</div>
+                <input type="radio" checked value="2" class="radio_text_line" id="sign_female_radio" name="gender_radio"/>
+                <div class="radio_dot_line">女士</div>
+            </div>
+        </div>
+    </div>
+    <div class="login_button_box" id="sign_button_box" itemId="-1">立即报名</div>
+    <div class="sign_button_comment" >团购规则<br/>
+        1.报名填写手机号，会有客服人员跟您确认<br/>
+        2.报名后满足达到成团条件，您即可享受团购服务<br/>
+        3.分享他人下单成功，您可以获得立减100的优惠，优惠可以无限叠加
+    </div>
+</div>
 
 <script type="text/javascript">
     $(document).ready(function(){

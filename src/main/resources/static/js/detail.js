@@ -17,6 +17,17 @@ function init() {
         $("#login_input_box").css("display","block");
     });
 
+    $("#sign_cross_mark").click(function() {
+        $("#login_input_bg").css("display","none");
+        $("#sign_input_box").css("display","none");
+    });
+
+    $(".l_button").click(function() {
+        $("#login_input_bg").css("display","block");
+        $("#sign_input_box").css("display","block");
+        $("#sign_button_box").attr("itemId",$(this).attr("itemId"));
+    });
+
     $("#return_login_link").click(function() {
         location.href = "/index";
     });
