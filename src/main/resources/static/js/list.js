@@ -17,13 +17,18 @@ function init() {
         $("#login_input_box").css("display","block");
     });
 
+    $(".r_button").click(function() {
+        var itemId = $(this).attr("itemId");
+        location.href = "/detail?commodityId=" + itemId;
+    });
+
     $("#login_button_box").click(function(){
 
-        var gender = 0;
+        var gender = 2;
         if($("#gender_male_radio").attr("checked") == "checked"){
             gender = 1;
         }else if($("#gender_female_radio").attr("checked") == "checked"){
-            gender = 0;
+            gender = 2;
         }
 
         var postdata={

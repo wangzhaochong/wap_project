@@ -39,11 +39,11 @@
             <div id="price_old" class="price_old" th:text="${item.priceLine}"></div>
         </div>
         <div id="button_box" class="button_box" >
-            <div id="r_button_box" class="r_button_box" >
-                <div id="r_button" class="r_button" >详情</div>
+            <div class="r_button_box" >
+                <div class="r_button" th:attr="itemId=${item.commodityId}">详情</div>
             </div>
-            <div id="l_button_box" class="l_button_box" >
-                <div id="l_button" class="l_button" >拼团</div>
+            <div class="l_button_box" >
+                <div class="l_button" th:attr="itemId=${item.commodityId}">拼团</div>
             </div>
         </div>
         <div id="condition_box" class="condition_box">
@@ -88,9 +88,9 @@
                 <div class="input_star_mark">*</div>
             </div>
             <div class="input_line">
-                <input type="radio" value="1" class="radio_text_line" id="gender_male_radio"/>
+                <input type="radio" value="1" class="radio_text_line" id="gender_male_radio" name="gender_radio"/>
                 <div class="radio_dot_line">先生</div>
-                <input type="radio" checked="checked" value="0" class="radio_text_line" id="gender_female_radio"/>
+                <input type="radio" checked value="2" class="radio_text_line" id="gender_female_radio" name="gender_radio"/>
                 <div class="radio_dot_line">女士</div>
             </div>
         </div>

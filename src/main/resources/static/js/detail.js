@@ -12,18 +12,27 @@ function init() {
         $("#login_input_box").css("display","none");
     });
 
-    $("#login_link").click(function() {
+    $("#detail_login_link").click(function() {
         $("#login_input_bg").css("display","block");
         $("#login_input_box").css("display","block");
     });
 
+    $("#return_login_link").click(function() {
+        location.href = "/index";
+    });
+
+    $("#r_button").click(function() {
+        location.href = "/index";
+    });
+
+
     $("#login_button_box").click(function(){
 
-        var gender = 0;
+        var gender = 2;
         if($("#gender_male_radio").attr("checked") == "checked"){
             gender = 1;
         }else if($("#gender_female_radio").attr("checked") == "checked"){
-            gender = 0;
+            gender = 2;
         }
 
         var postdata={
