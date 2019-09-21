@@ -11,23 +11,23 @@ import java.util.Date;
  * Created by Hayden on 2019/9/8.
  */
 @Data
-@TableName("order")
-public class Order {
+@TableName("order_info")
+public class OrderInfo {
 
     @TableId("order_id")
-    private Long order_id;
+    private Long orderId;
 
     @TableId("commodity_id")
-    private Long commodity_id;
+    private Long commodityId;
 
     @TableId("user_id")
-    private Long user_id;
+    private Long userId;
 
     @TableField("agent_id")
-    private Long agent_id;
+    private Long agentId;
 
     @TableField("share_id")
-    private Long share_id;
+    private Long shareId;
 
     @TableField("price")
     private Double price;
@@ -36,7 +36,7 @@ public class Order {
     private Double paid;
 
     @TableField("create_time")
-    private Date create_time;
+    private Date createTime;
 
     @TableField("status")
     private Integer status;

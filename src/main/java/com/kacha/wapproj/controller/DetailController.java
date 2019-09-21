@@ -3,6 +3,7 @@ package com.kacha.wapproj.controller;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.kacha.wapproj.entity.Commodity;
+import com.kacha.wapproj.entity.OrderInfo;
 import com.kacha.wapproj.entity.Pic;
 import com.kacha.wapproj.entity.User;
 import com.kacha.wapproj.service.*;
@@ -47,6 +48,9 @@ public class DetailController {
     @Autowired
     PicService picService;
 
+    @Autowired
+    OrderService orderService;
+
 
     @GetMapping(value = "/detail")
     public String detail(@RequestParam Long commodityId,
@@ -55,9 +59,10 @@ public class DetailController {
 
         //添加登录user
         String ckUid = CookieUtil.resolveINfoFromCookie(req.getCookies(), "uid");
+        User user = null;
         if(StringUtils.isNotBlank(ckUid)){
             Long uid = Long.valueOf(ckUid);
-            User user = userService.selectUserById(uid);
+            user = userService.selectUserById(uid);
             if(user.getGender() == 1){
                 model.addAttribute("gender", "先生");
             }else{
@@ -66,6 +71,17 @@ public class DetailController {
             model.addAttribute("user", user);
         }else{
             model.addAttribute("user", null);
+        }
+
+        Map<Long,Integer> orderStatusMap = Maps.newHashMap();
+        if(user != null){
+            List<OrderInfo> orderList = orderService.selectOrderById(user.getUserId());
+            if(orderList != null
+                    && orderList.size() > 0){
+                for(OrderInfo order : orderList){
+                    orderStatusMap.put(order.getCommodityId(),order.getStatus());
+                }
+            }
         }
 
         Commodity query = new Commodity();
@@ -96,6 +112,12 @@ public class DetailController {
             }
 
             commodity.setSrcList(scrList);
+        }
+
+        if(orderStatusMap.get(commodity.getCommodityId()) != null){
+            commodity.setOrderStatus(orderStatusMap.get(commodity.getCommodityId()));
+        }else{
+            commodity.setOrderStatus(-1);
         }
 
 

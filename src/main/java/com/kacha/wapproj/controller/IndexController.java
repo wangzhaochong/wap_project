@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.kacha.wapproj.entity.Commodity;
+import com.kacha.wapproj.entity.OrderInfo;
 import com.kacha.wapproj.entity.Pic;
 import com.kacha.wapproj.entity.User;
 import com.kacha.wapproj.mapper.UserMapper;
@@ -50,15 +51,19 @@ public class IndexController {
     @Autowired
     PicService picService;
 
+    @Autowired
+    OrderService orderService;
+
 
     @GetMapping(value = "/index")
     public String index(HttpServletRequest req, Model model) {
 
         //添加登录user
         String ckUid = CookieUtil.resolveINfoFromCookie(req.getCookies(), "uid");
+        User user = null;
         if(StringUtils.isNotBlank(ckUid)){
             Long uid = Long.valueOf(ckUid);
-            User user = userService.selectUserById(uid);
+            user = userService.selectUserById(uid);
             if(user.getGender() == 1){
                 model.addAttribute("gender", "先生");
             }else{
@@ -68,6 +73,21 @@ public class IndexController {
         }else{
             model.addAttribute("user", null);
         }
+
+        Map<Long,Integer> orderStatusMap = Maps.newHashMap();
+        if(user != null){
+            List<OrderInfo> orderList = orderService.selectOrderById(user.getUserId());
+            if(orderList != null
+                    && orderList.size() > 0){
+                for(OrderInfo order : orderList){
+                    orderStatusMap.put(order.getCommodityId(),order.getStatus());
+                }
+                model.addAttribute("orderCount", orderList.size());
+            }
+        }else{
+            model.addAttribute("orderCount", 0);
+        }
+
 
         List<Commodity> commodityList = commodityService.selectCommodityExtendList();
         List<Map<String,Object>> typeList = Lists.newArrayList();
@@ -100,12 +120,20 @@ public class IndexController {
             //排序
             for(String type : typeMap.keySet()){
                 List<Commodity> comList = typeMap.get(type);
-                //加入图片
+                //加入图片、订单状态
                 for(Commodity commodity : comList){
+
                     List<String> srcList = Lists.newArrayList();
                     srcList.add(srcMap.get(commodity.getCommodityId()));
                     commodity.setSrcList(srcList);
+
+                    if(orderStatusMap.get(commodity.getCommodityId()) != null){
+                        commodity.setOrderStatus(orderStatusMap.get(commodity.getCommodityId()));
+                    }else{
+                        commodity.setOrderStatus(-1);
+                    }
                 }
+
                 //分类内排序
                 Collections.sort(comList, new Comparator<Commodity>() {
                     @Override
@@ -113,6 +141,8 @@ public class IndexController {
                         return o1.getCommodityIndex() - o2.getCommodityIndex();
                     }
                 });
+
+
                 //封装分类
                 Map<String,Object> typeItem = Maps.newHashMap();
                 typeItem.put("typeName",type);

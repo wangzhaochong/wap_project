@@ -89,6 +89,26 @@
     width: 100%;
 }
 
+.share_box {
+    display: inline;
+    float: left;
+    width: 100%;
+    text-align: center;
+    background-color: #ffff00;
+    border-radius: 22px;
+    padding: 14px 0 14px 0;
+    margin: 14px 0 14px 0;
+}
+
+.share_box_text {
+    display: inline;
+    width: 100%;
+    min-height: 28px;
+    line-height: 26px;
+    color: #000000;
+    font-size: 16px;
+    padding: 2px 4px 4px 4px;
+}
 
 .price_box {
     display: inline;

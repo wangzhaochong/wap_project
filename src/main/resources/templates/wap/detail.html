@@ -57,8 +57,12 @@
             <div id="r_button_box" class="r_button_box" >
                 <div id="r_button" class="r_button" >菜单</div>
             </div>
-            <div id="l_button_box" class="l_button_box" >
-                <div id="l_button" class="l_button" th:attr="itemId=${commodity.commodityId}" >拼团</div>
+            <!--<div id="l_button_box" class="l_button_box" >-->
+                <!--<div id="l_button" class="l_button" th:attr="itemId=${commodity.commodityId}" >拼团</div>-->
+            <!--</div>-->
+            <div class="l_button_box" th:switch = "${commodity.orderStatus}>0">
+                <div th:case="true" class="l_button">已团</div>
+                <div th:case="false" class="l_button" th:attr="itemId=${commodity.commodityId}">拼团</div>
             </div>
         </div>
     </div>

@@ -69,6 +69,8 @@ public class Commodity {
     private List<String> srcList;
     @TableField(exist = false)
     private String deadline;
+    @TableField(exist = false)
+    private Integer orderStatus;
 
 
 

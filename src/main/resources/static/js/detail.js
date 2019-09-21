@@ -23,9 +23,12 @@ function init() {
     });
 
     $(".l_button").click(function() {
-        $("#login_input_bg").css("display","block");
-        $("#sign_input_box").css("display","block");
-        $("#sign_button_box").attr("itemId",$(this).attr("itemId"));
+        if($(this).attr("itemId") > 0) {
+            $("#login_input_bg").css("display","block");
+            $("#sign_input_box").css("display","block");
+            $("#sign_button_box").attr("itemId",$(this).attr("itemId"));
+        }
+
     });
 
     $("#return_login_link").click(function() {
