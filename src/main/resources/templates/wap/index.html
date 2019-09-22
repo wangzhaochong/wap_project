@@ -34,7 +34,7 @@
         <div class="item_title" th:if="${item.commodityName}!=null" th:text="${item.commodityName}"></div>
         <img class="item_img" th:src="${item.srcList[0]}"/>
         <div th:switch = "${item.orderStatus}>0">
-            <div th:case="true" class="share_box" th:switch = "${item.orderStatus}>0">
+            <div th:case="true" class="share_box">
                 <div class="share_box_text">点我 ！分享Ta人下单<br/>
                     立减100 无限叠加
                 </div>

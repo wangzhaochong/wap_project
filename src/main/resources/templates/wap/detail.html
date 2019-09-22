@@ -48,6 +48,11 @@
 </div>
 <div class="buttom_container_detail">
     <div class="buttom_box_detail">
+        <div th:switch = "${commodity.orderStatus}>0">
+            <div th:case="true" class="share_box">
+                <div class="share_box_text">分享下单立减100 无限叠加</div>
+            </div>
+        </div>
         <div id="price_box" class="price_box" >
             <div id="price_mark" class="price_mark" >￥</div>
             <div id="price_cur" class="price_cur" th:text="${commodity.priceCur}"></div>

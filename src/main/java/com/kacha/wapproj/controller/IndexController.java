@@ -83,6 +83,8 @@ public class IndexController {
                     orderStatusMap.put(order.getCommodityId(),order.getStatus());
                 }
                 model.addAttribute("orderCount", orderList.size());
+            }else{
+                model.addAttribute("orderCount", 0);
             }
         }else{
             model.addAttribute("orderCount", 0);
