@@ -80,6 +80,54 @@ function init() {
             }
         });
     });
+
+    $("#sign_button_box").click(function(){
+
+        var gender = 2;
+        if($("#sign_male_radio").attr("checked") == "checked"){
+            gender = 1;
+        }else if($("#sign_female_radio").attr("checked") == "checked"){
+            gender = 2;
+        }
+
+        var commodityId =  $(this).attr("itemId");
+
+        if($("#phone_sign_line").val() == null || $("#phone_sign_line").val() == ''
+            || $("#family_name_sign").val() == null || $("#family_name_sign").val() == ''
+            || gender == null || gender == ''){
+            alert("电话、姓氏、性别尚未填写");
+            return;
+        }
+
+        var postdata={
+            "phoneNumber":$("#phone_sign_line").val(),
+            "familyName":$("#family_name_sign").val(),
+            "givenName":$("#given_name_sign").val(),
+            "gender":gender
+        };
+
+        $.ajax({
+            url:'/user/sign?commodityId=' + commodityId,
+            type:'POST',
+            async:true,
+            data:JSON.stringify(postdata),
+            timeout:6000,
+            dataType:'json',
+            contentType:"application/json",
+            success:function(res){
+                if(res.code === 200){
+                    $("#login_input_bg").css("display","none");
+                    $("#sign_input_box").css("display","none");
+                    refresh();
+                }else{
+                    alert(res.message);
+                }
+            },
+            error:function(data){
+                alert(data.statusText);
+            }
+        });
+    });
 }
 
 function refresh(){
