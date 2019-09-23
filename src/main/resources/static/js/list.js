@@ -24,9 +24,13 @@ function init() {
 
     $(".l_button").click(function() {
         if($(this).attr("itemId") > 0){
-            $("#login_input_bg").css("display","block");
-            $("#sign_input_box").css("display","block");
-            $("#sign_button_box").attr("itemId",$(this).attr("itemId"));
+            if($(this).attr("uid") > 0){
+                signNow($(this).attr("itemId"), $(this).attr("uid"));
+            }else{
+                $("#login_input_bg").css("display","block");
+                $("#sign_input_box").css("display","block");
+                $("#sign_button_box").attr("itemId",$(this).attr("itemId"));
+            }
         }
     });
 
@@ -133,6 +137,35 @@ function init() {
 function refresh(){
     window.location.reload();//刷新当前页面.
 }
+
+function signNow(commodityId, uid){
+
+
+    $.ajax({
+        url:'/user/signNow?commodityId=' + commodityId,
+        type:'POST',
+        async:true,
+        data:{
+            commodityId : commodityId,
+            uid : uid
+        },
+        timeout:6000,
+        dataType:'json',
+        //contentType:"application/json",
+        success:function(res){
+            if(res.code === 200){
+                refresh();
+            }else{
+                alert(res.message);
+            }
+        },
+        error:function(data){
+            alert(data.statusText);
+        }
+    });
+}
+
+
 
 
 

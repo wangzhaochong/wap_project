@@ -105,6 +105,39 @@ public class UserController {
         return Resp.ok();
     }
 
+    @PostMapping(value = "/user/signNow")
+    @ResponseBody
+    public Object signNow(HttpServletResponse response,
+                          @RequestParam Long commodityId,
+                          @RequestParam Long uid,
+                          @RequestParam(required = false) Long agentId,
+                          @RequestParam(required = false) Long shareId) {
+
+        if(commodityId == null){
+            return Resp.error();
+        }
+
+
+        List<OrderInfo> orderInfos = orderService.selectOrderById(uid);
+        if(orderInfos != null){
+            for(OrderInfo orderInfo : orderInfos){
+                if(orderInfo.getCommodityId().equals(commodityId)){
+                    return Resp.error("您已团购过相同商品");
+                }
+            }
+        }
+
+        orderService.creatOrderInfo(uid,commodityId,agentId,shareId);
+
+        Cookie cookie = new Cookie("uid", String.valueOf(uid));
+        cookie.setMaxAge(-1);
+        cookie.setDomain("localhost");
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
+        return Resp.ok();
+    }
+
 
 
 }
