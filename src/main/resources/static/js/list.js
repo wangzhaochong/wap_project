@@ -132,6 +132,10 @@ function init() {
             }
         });
     });
+
+    $(".share_box_text").click(function() {
+        alert("分享链接已复制到剪切板")
+    });
 }
 
 function refresh(){

@@ -60,7 +60,7 @@ public class UserController {
         user = userService.selectUserByTel(user.getPhoneNumber());
         Cookie cookie = new Cookie("uid", String.valueOf(user.getUserId()));
         cookie.setMaxAge(-1);
-        cookie.setDomain("localhost");
+        cookie.setDomain("2579v57g08.zicp.vip");
         cookie.setPath("/");
         response.addCookie(cookie);
 
