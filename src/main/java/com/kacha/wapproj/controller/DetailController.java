@@ -69,8 +69,10 @@ public class DetailController {
                 model.addAttribute("gender", "女士");
             }
             model.addAttribute("user", user);
+            model.addAttribute("uid", user.getUserId());
         }else{
             model.addAttribute("user", null);
+            model.addAttribute("uid", -1);
         }
 
         Map<Long,Integer> orderStatusMap = Maps.newHashMap();
